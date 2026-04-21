@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BenkoFitness – Prava promjena počinje ovdje</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --primary: #e84e36;
+    --primary-hover: #ff5a42;
+    --dark-bg: #1a1a1a;
+    --darker-bg: #111111;
+    --darkest-bg: #0d0d0d;
+    --card-bg: #1e1e1e;
+    --white: #ffffff;
+    --text-light: #e0e0e0;
+    --text-muted: #999999;
+    --text-body: #bbbbbb;
+    --border-subtle: rgba(255,255,255,0.08);
+    --font: 'Poppins', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--dark-bg);
+    color: var(--text-body);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+  img { max-width: 100%; display: block; }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+  }
+
+  /* NAVBAR */
+  .navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(13,13,13,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--white);
+    letter-spacing: 0.5px;
+  }
+  .logo-accent {
+    color: var(--primary);
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--primary); }
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 5px;
+  }
+  .hamburger span { width: 26px; height: 2px; background: var(--white); transition: 0.3s; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: var(--darkest-bg);
+    overflow: hidden;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.2) 100%);
+    z-index: 1;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #2a1a1a 0%, #1a1a1a 100%);
+  }
+  .hero-placeholder-img {
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 55%;
+    background: linear-gradient(135deg, #2d1f1a, #3a2520);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-left: 3px dashed rgba(232,78,54,0.2);
+  }
+  .hero-placeholder-img::after { content: '📷 Hero slika ovdje'; opacity: 0.6; }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 550px;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 15px 32px;
+    background: var(--primary);
+    color: var(--white);
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(232,78,54,0.35);
+  }
+
+  /* SECTIONS */
+  .section { padding: 90px 0; }
+  .section-title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+  .section-desc {
+    color: var(--text-body);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    max-width: 600px;
+  }
+
+  /* ABOUT */
+  .about { background: var(--dark-bg); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .img-placeholder {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, #2d1f1a, #3a2520);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed rgba(232,78,54,0.2);
+  }
+  .img-placeholder::after {
+    content: '📷 Vaša slika ovdje';
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    opacity: 0.6;
+  }
+  .about-subtitle {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-top: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* TRAINING */
+  .training { background: var(--darker-bg); }
+  .training-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .training-list { margin-top: 10px; }
+  .training-list li {
+    padding: 13px 0;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-light);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .training-list li::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--primary);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* MEASUREMENT */
+  .measurement { background: var(--dark-bg); }
+  .measurement-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .measurement-list { margin-top: 20px; }
+  .measurement-list li {
+    padding: 10px 0;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .measurement-list li::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--primary);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .measurement-image .img-placeholder {
+    aspect-ratio: 4/3;
+  }
+
+  /* RATES */
+  .rates { background: var(--darker-bg); }
+  .rates-header { text-align: center; margin-bottom: 50px; }
+  .rates-header .section-desc { margin: 0 auto; }
+  .rates-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+  }
+  .rate-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-subtle);
+    padding: 45px 30px;
+    text-align: center;
+    transition: all 0.4s;
+  }
+  .rate-card:hover {
+    border-color: rgba(232,78,54,0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  }
+  .rate-card .price {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 5px;
+  }
+  .rate-card .plan-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 25px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .rate-card ul { margin-bottom: 30px; text-align: left; }
+  .rate-card ul li {
+    padding: 9px 0;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .rate-card ul li::before {
+    content: '✓';
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+  .btn-outline {
+    display: inline-block;
+    padding: 13px 30px;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.3s;
+  }
+  .btn-outline:hover { background: var(--primary); color: var(--white); }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    background: var(--dark-bg);
+    text-align: center;
+    padding: 90px 0;
+  }
+  .testimonial-box { max-width: 700px; margin: 30px auto 0; }
+  .testimonial-box .quote {
+    font-size: 1.05rem;
+    color: var(--text-body);
+    line-height: 1.9;
+    font-style: italic;
+    margin-bottom: 25px;
+  }
+  .testimonial-box .author { font-weight: 600; color: var(--white); font-size: 0.9rem; }
+  .testimonial-box .role { color: var(--primary); font-size: 0.8rem; margin-top: 3px; }
+
+  /* CTA SECTION */
+  .cta-section {
+    position: relative;
+    padding: 100px 0;
+    background: linear-gradient(135deg, #2d1f1a, #3a2520);
+    overflow: hidden;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+  }
+  .cta-section .cta-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+    z-index: 1;
+  }
+  .cta-section .container { position: relative; z-index: 2; }
+  .cta-content { max-width: 600px; }
+  .cta-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 900;
+    color: var(--white);
+    text-transform: uppercase;
+    line-height: 1.15;
+    margin-bottom: 30px;
+  }
+  .cta-accent { color: var(--primary); }
+  .cta-quote-mark {
+    font-size: 3rem;
+    color: var(--primary);
+    font-family: Georgia, serif;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .cta-quote {
+    font-size: 1rem;
+    color: var(--text-body);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .cta-author {
+    font-weight: 700;
+    color: var(--white);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  .cta-role {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+  }
+
+  /* FOOTER */
+  .footer { background: var(--darkest-bg); padding: 70px 0 30px; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 70px;
+  }
+  .footer-brand { margin-bottom: 15px; }
+  .footer-brand-text { font-weight: 700; font-size: 1.3rem; color: var(--white); }
+  .footer-desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 30px; }
+  .footer-contact-title {
+    font-size: 0.95rem; font-weight: 700; color: var(--white);
+    text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;
+  }
+  .footer-contact-info { color: var(--text-muted); font-size: 0.88rem; line-height: 2; }
+  .footer-form-title {
+    font-size: 0.95rem; font-weight: 700; color: var(--white);
+    text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px;
+  }
+  .form-group { margin-bottom: 15px; }
+  .form-group input, .form-group textarea {
+    width: 100%;
+    padding: 13px 16px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--white);
+    font-family: var(--font);
+    font-size: 0.88rem;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--primary); }
+  .form-group textarea { min-height: 110px; resize: vertical; }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+  .btn-submit {
+    padding: 13px 35px;
+    background: var(--primary);
+    color: var(--white);
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .btn-submit:hover { background: var(--primary-hover); transform: translateY(-2px); }
+  .copyright {
+    text-align: center;
+    padding: 20px 0 0;
+    margin-top: 50px;
+    border-top: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .nav-links.active {
+      display: flex; flex-direction: column;
+      position: absolute; top: 70px; left: 0; right: 0;
+      background: rgba(13,13,13,0.98);
+      padding: 25px 30px; gap: 18px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .hero-placeholder-img { width: 100%; opacity: 0.3; }
+    .about-grid, .training-content, .measurement-grid, .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+    .rates-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+    .section { padding: 60px 0; }
+    .about-image { order: -1; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <a href="#home" class="logo">BENKO<span class="logo-accent">FITNESS</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Početna</a>
+      <a href="#about">O meni</a>
+      <a href="#training">Treninzi</a>
+      <a href="#rates">Programi</a>
+      <a href="#testimonials">Iskustva</a>
+      <a href="#contact">Kontakt</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-placeholder-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="container">
+    <div class="hero-content">
+      <h1>Privatni fitness treninzi i savjetovanje – uživo i online</h1>
+      <a href="#about" class="btn-primary">Besplatno mjerenje sastava tijela</a>
+    </div>
+  </div>
+</section>
+
+<!-- O MENI -->
+<section class="section about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <h2 class="section-title">O meni</h2>
+        <p class="section-desc">Zovem se Ivor Benko i već godinama pomažem ljudima da postignu svoje fitness ciljeve — bilo da se radi o gubitku kilograma, izgradnji mišićne mase ili jednostavno zdravijem načinu života. Vjerujem u individualni pristup jer svako tijelo je drugačije, a svaki cilj zaslužuje prilagođen plan.</p>
+        <p class="about-subtitle">Certificirani osobni trener</p>
+      </div>
+      <div class="about-image"><div class="img-placeholder"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- KAKO VAM MOGU POMOĆI -->
+<section class="section training" id="training">
+  <div class="container">
+    <div class="training-content">
+      <div>
+        <h2 class="section-title">Kako vam mogu pomoći</h2>
+        <p class="section-desc">Bez obzira jeste li potpuni početnik ili iskusni sportaš, zajedno ćemo pronaći pravi put do vaših rezultata. Kombiniram stručno znanje, provjerene metode i konstantnu podršku kako biste napredovali sigurno i učinkovito.</p>
+      </div>
+      <div>
+        <ul class="training-list">
+          <li>Gubitak / kontrola tjelesne težine</li>
+          <li>Oblikovanje tijela</li>
+          <li>Trening s otporom</li>
+          <li>Izgradnja mišića</li>
+          <li>Mobilnost / fleksibilnost</li>
+          <li>Planiranje i periodizacija za glumačke i TV uloge</li>
+          <li>Razvoj brzine, snage i eksplozivnosti</li>
+          <li>Savjeti o prehrani</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BESPLATNO MJERENJE -->
+<section class="section measurement">
+  <div class="container">
+    <div class="measurement-grid">
+      <div>
+        <h2 class="section-title">Besplatno prvo mjerenje sastava tijela + konzultacije</h2>
+        <p class="section-desc">Prvi korak prema promjeni je znati gdje se nalazite. Dođite na besplatno mjerenje i konzultacije — analizirat ćemo vaše tijelo u detalje i postaviti jasne, realne ciljeve.</p>
+        <ul class="measurement-list">
+          <li>Tjelesna težina</li>
+          <li>Postotak masnog tkiva (BIA)</li>
+          <li>Količina mišića u kg</li>
+          <li>Viscelarne masnoće</li>
+          <li>Postotak vode u tijelu</li>
+          <li>Biološka dob</li>
+          <li>BMI/ITM (Indeks Tjelesne Mase)</li>
+          <li>Izračun dnevne potrebe kalorija (TDEE)</li>
+        </ul>
+      </div>
+      <div class="measurement-image"><div class="img-placeholder"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMI -->
+<section class="section rates" id="rates">
+  <div class="container">
+    <div class="rates-header">
+      <h2 class="section-title">Programi</h2>
+      <p class="section-desc">Odaberite program koji vam najbolje odgovara. Svaki uključuje individualni pristup i stručno vodstvo prilagođeno vašim ciljevima.</p>
+    </div>
+    <div class="rates-grid">
+      <div class="rate-card">
+        <div class="price">€40</div>
+        <div class="plan-name">Privatni treninzi</div>
+        <ul>
+          <li>Individualni trening 1-na-1</li>
+          <li>Prilagođen plan vježbi</li>
+          <li>Praćenje napretka</li>
+        </ul>
+        <a href="#contact" class="btn-outline">Kontaktiraj me</a>
+      </div>
+      <div class="rate-card">
+        <div class="price">€40</div>
+        <div class="plan-name">Online savjetovanje</div>
+        <ul>
+          <li>Video konzultacije</li>
+          <li>Personalizirani plan prehrane i treninga</li>
+          <li>Infografika sažetka prehrane i vježbanja</li>
+          <li>Tjedna provjera i korekcije</li>
+          <li>Stalna podrška putem poruka</li>
+        </ul>
+        <a href="#contact" class="btn-outline">Kontaktiraj me</a>
+      </div>
+      <div class="rate-card">
+        <div class="price">€40</div>
+        <div class="plan-name">Vaganje i mjerenje sastava tijela + plan i program</div>
+        <ul>
+          <li>Kompletno mjerenje sastava tijela</li>
+          <li>Detaljna analiza rezultata</li>
+          <li>Personalizirani plan prehrane</li>
+          <li>Program treninga po mjeri</li>
+          <li>Prijedlozi dodataka prehrani</li>
+          <li>In-Body analiza</li>
+          <li>Tjedne kontrole</li>
+        </ul>
+        <a href="#contact" class="btn-outline">Kontaktiraj me</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <h2 class="section-title">Što klijenti kažu</h2>
+    <div class="testimonial-box">
+      <p class="quote">"Ivor mi je pomogao da konačno shvatim kako pravilno trenirati i jesti. Nakon samo 3 mjeseca vidio sam rezultate koje nisam mogao postići godinama sam. Preporučujem svima koji žele ozbiljnu promjenu."</p>
+      <p class="author">Marko H.</p>
+      <p class="role">Klijent</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section">
+  <div class="cta-overlay"></div>
+  <div class="container">
+    <div class="cta-content">
+      <h2 class="cta-title"><span class="cta-accent">Besplatno</span> prvo mjerenje sastava tijela</h2>
+      <div class="cta-quote-mark">"</div>
+      <p class="cta-quote">Naručite se na besplatno mjerenje sastava tijela i prvi konzultacijski razgovor. Zajedno ćemo definirati vaše ciljeve i napraviti plan koji daje rezultate.</p>
+      <p class="cta-author">Ivor Benko</p>
+      <p class="cta-role">Osobni trener</p>
+      <a href="#contact" class="btn-primary" style="margin-top: 25px;">Rezerviraj termin</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <div class="footer-brand-text">BENKO<span class="logo-accent">FITNESS</span></div>
+        </div>
+        <p class="footer-desc">Osobni treninzi i savjetovanje prilagođeni vašim ciljevima. Zajedno gradimo bolju verziju vas — korak po korak.</p>
+        <div>
+          <div class="footer-contact-title">Kontaktiraj me</div>
+          <div class="footer-contact-info">
+            Zagreb, Hrvatska<br>
+            ivor@benkofitness.com<br>
+            099 590 7887
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-form-title">Pošalji mi poruku</div>
+        <div class="form-group"><input type="text" placeholder="Ime *"></div>
+        <div class="form-group"><input type="email" placeholder="Email *"></div>
+        <div class="form-group"><textarea placeholder="Poruka *"></textarea></div>
+        <button class="btn-submit">Pošalji</button>
+      </div>
+    </div>
+    <div class="copyright">Copyright &copy; 2026 BenkoFitness &nbsp;|&nbsp; Powered by BenkoFitness</div>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('active')));
+</script>
+</body>
+</html>
