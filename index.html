@@ -111,15 +111,8 @@
     position: absolute;
     right: 0; top: 0; bottom: 0;
     width: 55%;
-    background: linear-gradient(135deg, #2d1f1a, #3a2520);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    border-left: 3px dashed rgba(232,78,54,0.2);
+    background: url('hero.png') center/cover no-repeat;
   }
-  .hero-placeholder-img::after { content: '📷 Hero slika ovdje'; opacity: 0.6; }
   .hero-content {
     position: relative; z-index: 2;
     max-width: 550px;
@@ -346,7 +339,7 @@
   .cta-section {
     position: relative;
     padding: 100px 0;
-    background: linear-gradient(135deg, #2d1f1a, #3a2520);
+    background: url('cta-bg.png') center/cover no-repeat;
     overflow: hidden;
     min-height: 400px;
     display: flex;
@@ -511,7 +504,7 @@
         <p class="section-desc">Zovem se Ivor Benko i već godinama pomažem ljudima da postignu svoje fitness ciljeve — bilo da se radi o gubitku kilograma, izgradnji mišićne mase ili jednostavno zdravijem načinu života. Vjerujem u individualni pristup jer svako tijelo je drugačije, a svaki cilj zaslužuje prilagođen plan.</p>
         <p class="about-subtitle">Certificirani osobni trener</p>
       </div>
-      <div class="about-image"><div class="img-placeholder"></div></div>
+      <div class="about-image"><img src="about.png" alt="Ivor Benko" style="width:100%; aspect-ratio:3/4; object-fit:cover;"></div>
     </div>
   </div>
 </section>
@@ -558,7 +551,7 @@
           <li>Izračun dnevne potrebe kalorija (TDEE)</li>
         </ul>
       </div>
-      <div class="measurement-image"><div class="img-placeholder"></div></div>
+      <div class="measurement-image"><img src="measurement.png" alt="Mjerenje sastava tijela" style="width:100%; aspect-ratio:4/3; object-fit:cover;"></div>
     </div>
   </div>
 </section>
