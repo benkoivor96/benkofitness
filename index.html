@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BenkoFitness – Prava promjena počinje ovdje</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -22,6 +22,7 @@
     --text-body: #bbbbbb;
     --border-subtle: rgba(255,255,255,0.08);
     --font: 'Poppins', sans-serif;
+    --font-heading: 'Teko', sans-serif;
   }
 
   html { scroll-behavior: smooth; }
@@ -60,17 +61,19 @@
     height: 70px;
   }
   .logo {
+    font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     color: var(--white);
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
   }
   .logo-accent {
     color: var(--primary);
   }
   .nav-links { display: flex; gap: 28px; }
   .nav-links a {
-    font-size: 0.78rem;
+    font-family: var(--font-heading);
+    font-size: 1rem;
     font-weight: 500;
     color: var(--text-muted);
     text-transform: uppercase;
@@ -95,30 +98,21 @@
     display: flex;
     align-items: center;
     position: relative;
-    background: var(--darkest-bg);
+    background: url('hero.png') center/cover no-repeat fixed;
     overflow: hidden;
   }
   .hero-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.2) 100%);
+    background: linear-gradient(to right, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.25) 100%);
     z-index: 1;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, #2a1a1a 0%, #1a1a1a 100%);
-  }
-  .hero-placeholder-img {
-    position: absolute;
-    right: 0; top: 0; bottom: 0;
-    width: 55%;
-    background: url('hero.png') center/cover no-repeat;
   }
   .hero-content {
     position: relative; z-index: 2;
     max-width: 550px;
   }
   .hero h1 {
-    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5.5vw, 4.5rem);
     font-weight: 800;
     color: var(--white);
     line-height: 1.15;
@@ -130,9 +124,9 @@
     padding: 15px 32px;
     background: var(--primary);
     color: var(--white);
-    font-family: var(--font);
+    font-family: var(--font-heading);
     font-weight: 600;
-    font-size: 0.8rem;
+    font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     border: none;
@@ -148,7 +142,8 @@
   /* SECTIONS */
   .section { padding: 90px 0; }
   .section-title {
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
     font-weight: 700;
     color: var(--white);
     margin-bottom: 20px;
@@ -186,7 +181,8 @@
     opacity: 0.6;
   }
   .about-subtitle {
-    font-size: 0.85rem;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--primary);
     margin-top: 20px;
@@ -270,13 +266,15 @@
     box-shadow: 0 15px 40px rgba(0,0,0,0.4);
   }
   .rate-card .price {
-    font-size: 2.5rem;
+    font-family: var(--font-heading);
+    font-size: 3rem;
     font-weight: 800;
     color: var(--primary);
     margin-bottom: 5px;
   }
   .rate-card .plan-name {
-    font-size: 0.85rem;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--white);
     text-transform: uppercase;
@@ -309,9 +307,9 @@
     padding: 13px 30px;
     border: 2px solid var(--primary);
     color: var(--primary);
-    font-family: var(--font);
+    font-family: var(--font-heading);
     font-weight: 600;
-    font-size: 0.75rem;
+    font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     transition: all 0.3s;
@@ -339,7 +337,7 @@
   .cta-section {
     position: relative;
     padding: 100px 0;
-    background: url('measurement.png') center/cover no-repeat;
+    background: url('cta-bg.png') center/cover no-repeat;
     overflow: hidden;
     min-height: 400px;
     display: flex;
@@ -353,7 +351,8 @@
   .cta-section .container { position: relative; z-index: 2; }
   .cta-content { max-width: 600px; }
   .cta-title {
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-family: var(--font-heading);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
     font-weight: 900;
     color: var(--white);
     text-transform: uppercase;
@@ -394,15 +393,17 @@
     gap: 70px;
   }
   .footer-brand { margin-bottom: 15px; }
-  .footer-brand-text { font-weight: 700; font-size: 1.3rem; color: var(--white); }
+  .footer-brand-text { font-family: var(--font-heading); font-weight: 700; font-size: 1.6rem; color: var(--white); }
   .footer-desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 30px; }
   .footer-contact-title {
-    font-size: 0.95rem; font-weight: 700; color: var(--white);
+    font-family: var(--font-heading);
+    font-size: 1.2rem; font-weight: 700; color: var(--white);
     text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;
   }
   .footer-contact-info { color: var(--text-muted); font-size: 0.88rem; line-height: 2; }
   .footer-form-title {
-    font-size: 0.95rem; font-weight: 700; color: var(--white);
+    font-family: var(--font-heading);
+    font-size: 1.2rem; font-weight: 700; color: var(--white);
     text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px;
   }
   .form-group { margin-bottom: 15px; }
@@ -424,9 +425,9 @@
     padding: 13px 35px;
     background: var(--primary);
     color: var(--white);
-    font-family: var(--font);
+    font-family: var(--font-heading);
     font-weight: 600;
-    font-size: 0.8rem;
+    font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     border: none;
@@ -484,8 +485,6 @@
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-bg"></div>
-  <div class="hero-placeholder-img"></div>
   <div class="hero-overlay"></div>
   <div class="container">
     <div class="hero-content">
